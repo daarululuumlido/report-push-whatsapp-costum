@@ -1,13 +1,11 @@
 const axios = require("axios");
+const context = require('@actions/github');
 
-function report({url, numbers, dataGithub, actions}) {
-    console.log(url)
-    console.log(numbers)
-    console.log(dataGithub)
-    console.log(actions)
-    const data = JSON.stringify({
-        "chatId":numbers,
-        "body": `Triggered via push by *andryluthfi* action release/production 5644a10b
+function report({url, numbers}) {
+    console.log(context.context)
+    context.getOctokit("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");
+
+    const bodyData = `Triggered via push by *andryluthfi* action release/production 5644a10b
 *GitHub Actions**Workflow Deploy to Staging job deployment triggered by push is SUCCESS* for _release/production_
 https://github.com/fjogeleit/http-request-action
 5644a10b - 1 commits
@@ -34,26 +32,47 @@ _98_
 _andryluthfi_
 
 *Job Status*
-_SUCCESS_`
-    });
+_SUCCESS_`;
 
-    const config = {
-        method: 'post',
-        url: url,
-        headers: {
-            'Content-Type': 'application/json',
-            'Cookie': 'connect.sid=s%3ARPpaOmzVCl4j8kY9dGRutM-o4-_aRShw.%2FhyCSqB3aC9vr3o3e3%2FlYrPCO5LA9qp0ISLXCRZDea0'
-        },
-        data: data
-    };
-    axios(config)
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-        })
-        .catch(function (error) {
-            console.log(error);
+
+    const numberSend = JSON.parse(numbers);
+    for (let i = 0; i < numberSend.length; i++) {
+        const data = JSON.stringify({
+            "chatId": numbers,
+            "body": bodyData
         });
+        const config = {
+            method: 'post',
+            url: url,
+            headers: {
+                'Content-Type': 'application/json',
+                'Cookie': 'connect.sid=s%3ARPpaOmzVCl4j8kY9dGRutM-o4-_aRShw.%2FhyCSqB3aC9vr3o3e3%2FlYrPCO5LA9qp0ISLXCRZDea0'
+            },
+            data: data
+        };
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 }
+
+/**
+ * @param {string} value
+ *
+ * @returns {Object}
+ */
+const convertToJSON = (value) => {
+    try {
+        return JSON.parse(value)
+    } catch (e) {
+        return {}
+    }
+}
+
 module.exports = {
     report
 }
