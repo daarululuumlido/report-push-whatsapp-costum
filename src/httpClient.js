@@ -9,7 +9,7 @@ function myFunction(commit) {
 function report({url, numbers}) {
     let github = context.context.payload;
     console.log(JSON.stringify(github));
-    const commitHead = github.head_commid.id.substring(0,8);
+    const commitHead = github.head_commit.id.substring(0,8);
     github.commits.forEach(myFunction);
     const bodyData = `Triggered via push by *${github.actor}* action ${github.repository.default_branch} ${commitHead}
 *GitHub Actions**Workflow Deploy to Staging job deployment triggered by push is SUCCESS* for _release/production_
@@ -18,7 +18,7 @@ ${commitHead} - ${github.commits.length} commits
 Commits
 ${commitHead} - temp
 Job Steps
-✅ ${github.head_commid.id}
+✅ ${github.head_commit.id}
 ✅ extract_branch
 ✅ deploy_staging
 
