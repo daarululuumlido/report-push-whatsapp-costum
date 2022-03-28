@@ -2,7 +2,7 @@ const axios = require("axios");
 
 
 function report(url, numbers, dataGithub) {
-    console.log(data)
+    console.log(dataGithub)
     const body = `Triggered via push by *fdg dfg * action release/production $df gdfg 
 *GitHub Actions*
 

@@ -8,6 +8,10 @@ inputs:
         description: 'Number you wanna send'
         required: true
         default: '6282213542319'
+    data:
+        description: 'Number you wanna send'
+        required: false
+        default:  "{}"
 
 outputs:
     response:
