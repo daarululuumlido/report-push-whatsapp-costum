@@ -1605,7 +1605,8 @@ module.exports.default = axios;
 const axios = __webpack_require__(53);
 
 
-function report(url, numbers) {
+function report(url, numbers, dataGithub) {
+    console.log(data)
     const body = `Triggered via push by *fdg dfg * action release/production $df gdfg 
 *GitHub Actions*
 
@@ -3935,8 +3936,9 @@ const { GithubActions } = __webpack_require__(230);
 
 const url = core.getInput('url')
 const numbers = core.getInput('numbers')
+const data = core.getInput('data')
 
-report({ url, numbers: new GithubActions() })
+report({ url, numbers, data: new GithubActions() })
 
 
 /***/ }),
