@@ -7,7 +7,7 @@ inputs:
     numbers:
         description: 'Number you wanna send'
         required: true
-        default: "['6282213542319@c.us','6282213542319@c.us','6282213542319@c.us']"
+        default: "6282213542319@c.us,6282213542319@c.us,6282213542319@c.us"
 
 outputs:
     response:
