@@ -1,8 +1,7 @@
 const core = require("@actions/core");
-const { report } = require('./httpClient');
-const { GithubActions } = require('./githubActions');
+const {report} = require('./httpClient');
 
-const url =  core.getInput('url')
+const url = core.getInput('url')
 const numbers = core.getInput('numbers')
 
-report({ url, numbers})
+report({url, numbers})
